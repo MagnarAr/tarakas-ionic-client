@@ -14,3 +14,107 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.icon-money-5-0, .icon-money-5-1, .icon-money-5-2, .icon-money-5-3, .icon-money-5-4, .icon-money-5-5 {
+  background-image: url('../assets/images/money-pack.png');
+  background-repeat: no-repeat;
+  /* Create a Responsive Square */
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  /* Set The Sprite as the Background */
+  background-size: 600%; //number of images horizontally * 100
+  display: block;
+}
+
+.icon-money-5-0 {
+  /* Set The Sprite as the Background */
+  background-position: 0 0;
+}
+
+.icon-money-5-1 {
+  /* Set The Sprite as the Background */
+  background-position: percentage(1/5) 0;
+}
+
+.icon-money-5-2 {
+  /* Set The Sprite as the Background */
+  background-position: percentage(1/5*2) 0;
+}
+
+.icon-money-5-3 {
+  /* Set The Sprite as the Background */
+  background-position: percentage(1/5*3) 0;
+}
+
+.icon-money-5-4 {
+  /* Set The Sprite as the Background */
+  background-position: percentage(1/5*4) 0;
+}
+
+.icon-money-5-5 {
+  /* Set The Sprite as the Background */
+  background-position: percentage(1/5*5) 0;
+}
+
+.euro-500, .euro-200, .euro-100, .euro-50, .euro-20, .euro-10, .euro-5 {
+  height: 100px;
+}
+
+.euro-500 {
+  background: url('../assets/images/500-euro.svg') no-repeat;
+}
+
+.euro-200 {
+  background: url('../assets/images/200-euro.svg') no-repeat;
+}
+
+.euro-100 {
+  background: url('../assets/images/100-euro.svg') no-repeat;
+}
+
+.euro-50 {
+  background: url('../assets/images/50-euro.svg') no-repeat;
+}
+
+.euro-20 {
+  background: url('../assets/images/20-euro.svg') no-repeat;
+}
+
+.euro-10 {
+  background: url('../assets/images/10-euro.svg') no-repeat;
+}
+
+.euro-5 {
+  background: url('../assets/images/5-euro.svg') no-repeat;
+}
+
+.money-count {
+  color: white;
+  background-color: red;
+  padding: 1px 3px;
+  border-radius: 10px;
+  font-size: 1.0rem;
+  position: absolute;
+  top: -6px;
+  font-weight: bold;
+  right: -6px;
+}
+
+.money {
+  font-size: 2.4rem
+}
+
+.error-message {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 2px solid #ebccd1;
+  border-radius: 5px;
+}
+
+.success-message {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border: 2px solid #d6e9c6;
+  border-radius: 5px;
+}

@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{details.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="deleteGoal()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid style="background-color: #ef3e5e;">
+    <ion-row>
+      <ion-col>
+        VABA RAHA:
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-3 col-9 text-right>
+        <span style="font-size: 6rem">{{spendableAmount | currency:'EUR':true}}</span>
+      </ion-col>
+    </ion-row>
+    <!--<ion-row>-->
+      <!--<ion-col text-center>-->
+        <!--<price-label [value]="spendableAmount" [label]="'vaba raha'"></price-label>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+    <!--<ion-row text-center>-->
+      <!--<ion-col col-3>-->
+        <!--<price-label [value]="details.collectedAmount" [label]="'kogutud'"></price-label>-->
+      <!--</ion-col>-->
+      <!--<ion-col col-6>-->
+        <!--<img *ngIf="details.imageSource" src="{{ 'data:image/jpeg;base64,' + details.imageSource }}"/>-->
+        <!--{{!details.imageSource ? ('No image to display' | uppercase) : ''}}-->
+      <!--</ion-col>-->
+      <!--<ion-col col-3>-->
+        <!--<price-label [value]="details.price" [label]="'koguda'"></price-label>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+  </ion-grid>
+
+  <!--<ion-grid class="grid-basic-page">-->
+    <!--<ion-row *ngFor="let row of getPackages()">-->
+      <!--<ion-col width-10 *ngFor="let col of row">-->
+        <!--<div class="{{'icon-money-5-' + col.collected}}"></div>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+  <!--</ion-grid>-->
+  <ion-grid style="background-color: #94ca4b;">
+    <ion-row>
+      <ion-col>
+        KOGUTUD:
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let row of getCollectedPackages()">
+      <ion-col col-2 *ngFor="let col of row">
+        <euro-column [data]="col"></euro-column>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-3 col-9 text-right>
+        <span style="font-size: 6rem">{{details.collectedAmount | currency:'EUR':true}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        VAJA:
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let row of getTotalPackagesLeft()">
+      <ion-col col-3 *ngFor="let col of row">
+        <euro-column [data]="col"></euro-column>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-3 col-9 text-right>
+        <span style="font-size: 6rem">{{details.price - details.collectedAmount | currency:'EUR':true}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div text-center>
+    <button ion-button icon-only (click)="decrementCollectedAmount()" [disabled]="!details.collectedAmount">
+      <ion-icon name="remove"></ion-icon>
+    </button>
+
+    <button ion-button icon-only (click)="incrementCollectedAmount()"
+            [disabled]="details.collectedAmount >= details.price || spendableAmount <= 0">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </div>
+
+</ion-content>

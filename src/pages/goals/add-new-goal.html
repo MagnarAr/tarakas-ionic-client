@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>
+      Lisa unistus
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios,core">Katkesta</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formData" (ngSubmit)="saveGoal()">
+
+    <ion-list>
+      <ion-item>
+        <ion-label floating>{{"ADD_NEW_GOAL.TITLE" | translate}}</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines *ngIf="!formData.controls.name.valid && formData.controls.name.touched">
+        <p class="invalid">Palun lisa oma unistusele nimi.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{"ADD_NEW_GOAL.PRICE" | translate}}</ion-label>
+        <ion-input type="text" formControlName="price"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines *ngIf="!formData.controls.price.valid && formData.controls.price.touched">
+        <p class="invalid">Palun sisesta number vahemikus 1 - 10 000.</p>
+      </ion-item>
+    </ion-list>
+
+    <!-- take image -->
+    <div padding>
+      <ion-row>
+        <ion-col text-center (click)="takePicture()">
+          <ion-icon *ngIf="!formData.value.imageSource" style="font-size: 120px;" name="camera"></ion-icon>
+          <img *ngIf="formData.value.imageSource" src="{{ 'data:image/jpeg;base64,' + formData.value.imageSource }}"/>
+          <br>{{!formData.value.imageSource ? ("Tee uus pilt" | uppercase) : ''}}
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- save form data -->
+    <div padding>
+      <button ion-button color="primary" block type="submit" [disabled]="!formData.valid">Lisa</button>
+    </div>
+  </form>
+
+</ion-content>

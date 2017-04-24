@@ -1,17 +1,60 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>{{ 'MY_PIGGY_BANK' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addNewGoal()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-4 col-4 text-center>
+        <h4>MINU RAHA</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <price-label [value]="getSpendableAmount()" [label]="'vaba raha'"></price-label>
+      </ion-col>
+      <ion-col text-center>
+        <price-label [value]="getTotalCollected()" [label]="'kogutud'"></price-label>
+      </ion-col>
+      <ion-col text-center>
+        <price-label [value]="userSession.getTotalAmount()" [label]="'kokku'"></price-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row text-center>
+    <ion-col col-12 *ngIf="message" class="{{message.class}}">{{message.text}}</ion-col>
+  </ion-row>
+
+  <h3>Minu unistused</h3>
+
+  <ng-container *ngFor="let goal of goals">
+    <ion-card tappable [navPush]="goalDetailsPage" [navParams]="{goal: goal, spendableAmount: getSpendableAmount()}">
+      <ion-grid>
+        <ion-row no-padding center>
+          <ion-col col-8>
+            <ion-card-content>
+              <ion-card-title>{{goal.name}}</ion-card-title>
+              <p><ion-icon [name]="'pricetag'"></ion-icon>
+                {{goal.collectedAmount}} / {{goal.price}} €</p>
+            </ion-card-content>
+          </ion-col>
+          <ion-col *ngIf="goal.imageSource" no-padding>
+            <img src="{{goal.imageSource ? 'data:image/jpeg;base64,' + goal.imageSource : '/assets/images/no-image-icon.png'}}"/>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ng-container>
+
+  <!-- maybe use this in the future -->
+  <!--<progress-bar [progress]="12"></progress-bar>-->
+
 </ion-content>

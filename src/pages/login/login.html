@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>
+      Logi sisse
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center style="height: 100%;
+    justify-content: center;">
+  <div padding>
+    <ion-segment [(ngModel)]="authType">
+      <ion-segment-button value="login">
+        Logi sisse
+      </ion-segment-button>
+      <ion-segment-button value="signup">
+        Registreeri
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+  <form [formGroup]="formData" (ngSubmit)="submitForm()">
+
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Kasutaja</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Parool</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines *ngIf="errorMessage">
+        <p class="invalid">{{errorMessage}}</p>
+      </ion-item>
+    </ion-list>
+
+
+    <!-- save form data -->
+    <div padding>
+      <button ion-button block color="primary" type="submit" [disabled]="!formData.valid || loading">
+        {{authType == 'login' ? 'Logi sisse' : 'Registreeru'}}
+      </button>
+    </div>
+  </form>
+
+</ion-content>
