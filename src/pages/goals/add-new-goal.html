@@ -27,11 +27,11 @@
 
       <ion-item>
         <ion-label floating>{{"ADD_NEW_GOAL.PRICE" | translate}}</ion-label>
-        <ion-input type="text" formControlName="price"></ion-input>
+        <ion-input type="number" formControlName="price"></ion-input>
       </ion-item>
 
       <ion-item no-lines *ngIf="!formData.controls.price.valid && formData.controls.price.touched">
-        <p class="invalid">Palun sisesta number vahemikus 1 - 10 000.</p>
+        <p class="invalid">Palun sisesta number vahemikus 0.01 - 1 000 000.</p>
       </ion-item>
     </ion-list>
 

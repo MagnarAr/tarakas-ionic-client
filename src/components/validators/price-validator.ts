@@ -8,9 +8,8 @@ export class PriceValidator {
       return PriceValidator.notValid();
     }
     let value = Number(control.value);
-    console.log("Value:", value);
 
-    if (value < 0) {
+    if (value < 0.01) {
       return PriceValidator.notValid();
     }
 

@@ -2,8 +2,8 @@ import {NgModule, ErrorHandler, LOCALE_ID} from '@angular/core';
 import {IonicStorageModule, Storage} from '@ionic/storage';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {AboutPage} from '../pages/about/about';
-import {ContactPage} from '../pages/contact/contact';
+import {SettingsPage} from '../pages/settings/settings';
+import {HelpPage} from '../pages/help/help';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {AddNewGoalComponent} from "../pages/goals/add-new-goal.component";
@@ -24,6 +24,7 @@ import {EuroColumnDirective} from "../components/euro-column";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {StatusBar} from "@ionic-native/status-bar";
 import {Camera} from "@ionic-native/camera";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 let storage = new Storage({});
 
@@ -40,8 +41,8 @@ export function getAuthHttp(http) {
   declarations: [
     MyApp,
     ProtectedComponent,
-    AboutPage,
-    ContactPage,
+    SettingsPage,
+    HelpPage,
     HomePage,
     TabsPage,
     AddNewGoalComponent,
@@ -67,8 +68,8 @@ export function getAuthHttp(http) {
   entryComponents: [
     MyApp,
     ProtectedComponent,
-    AboutPage,
-    ContactPage,
+    SettingsPage,
+    HelpPage,
     HomePage,
     TabsPage,
     AddNewGoalComponent,
@@ -81,6 +82,7 @@ export function getAuthHttp(http) {
     {provide: LOCALE_ID, useValue: 'et-EE'},
     SplashScreen,
     StatusBar,
+    SocialSharing,
     Camera,
     TranslateService,
     UserSession,

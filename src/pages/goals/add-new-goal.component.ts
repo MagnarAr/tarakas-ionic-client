@@ -14,7 +14,6 @@ import {PriceValidator} from "../../components/validators/price-validator";
 export class AddNewGoalComponent extends ProtectedComponent {
 
   formData: FormGroup;
-  public imageSource: string;
 
   constructor(public goalService: GoalService, public viewCtrl: ViewController, private camera: Camera,
               private formBuilder: FormBuilder, public authService: AuthService, public _app: App) {
@@ -29,9 +28,7 @@ export class AddNewGoalComponent extends ProtectedComponent {
 
   saveGoal() {
     this.goalService.saveNewGoal(this.formData.value)
-      .subscribe((result) => this.viewCtrl.dismiss().catch(() => {
-      }));
-    //this.viewCtrl.dismiss(newGoal);
+      .subscribe((result) => this.viewCtrl.dismiss(), () => this.viewCtrl.dismiss());
   }
 
   public dismiss() {
@@ -50,7 +47,7 @@ export class AddNewGoalComponent extends ProtectedComponent {
       targetHeight: 300,
       saveToPhotoAlbum: false
     }).then(imageData => {
-      this.formData.value.imageSource = imageData;
+      this.formData.controls['imageSource'].setValue(imageData);
     }, error => {
       console.log("ERROR -> " + JSON.stringify(error));
     });

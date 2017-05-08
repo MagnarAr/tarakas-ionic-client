@@ -8,12 +8,12 @@ import {Platform} from "ionic-angular";
 @Injectable()
 export class AuthService {
 
-  private static CORE_API_URL = "http://172.20.10.2:8080";
+  private static CORE_API_URL = "http://45.76.94.100:8080/";
 
 
   constructor(private http: Http, private plt: Platform, private storage: Storage) {
     if (!plt.is('ios')) {
-      AuthService.CORE_API_URL = 'http://127.0.0.1:8080'
+      AuthService.CORE_API_URL = 'http://45.76.94.100:8080'
     }
   }
 

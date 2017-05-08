@@ -8,11 +8,11 @@ import {Platform} from "ionic-angular";
 @Injectable()
 export class GoalService {
 
-  private static CORE_API_URL = "http://172.20.10.2:8080";
+  private static CORE_API_URL = "http://45.76.94.100:8080";
 
   constructor(private authHttp: AuthHttp, private plt: Platform) {
     if (!plt.is('ios')) {
-      GoalService.CORE_API_URL = 'http://127.0.0.1:8080'
+      GoalService.CORE_API_URL = 'http://45.76.94.100:8080'
     }
   }
 

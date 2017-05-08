@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ModalController, App} from 'ionic-angular';
+import {ModalController, App, LoadingController} from 'ionic-angular';
 import {AddNewGoalComponent} from "../goals/add-new-goal.component";
 import {Goal} from "../goals/goal";
 import {GoalDetailsPage} from "../goals/goal-details";
@@ -7,6 +7,7 @@ import {UserSession} from "../../providers/user-session";
 import {AuthService} from "../../providers/auth-service";
 import {GoalService} from "../../providers/goal-service";
 import {ProtectedComponent} from "../../components/protected.component";
+import {Helper} from "../../app/helper.component";
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,7 @@ export class HomePage extends ProtectedComponent {
   goalDetailsPage = GoalDetailsPage;
   message: any;
 
-  constructor(public modalCtrl: ModalController, public userSession: UserSession,
+  constructor(public modalCtrl: ModalController, public userSession: UserSession, public loadingCtrl: LoadingController,
               public goalService: GoalService, public authService: AuthService, public _app: App) {
     super(authService, _app);
   }
@@ -29,17 +30,25 @@ export class HomePage extends ProtectedComponent {
   }
 
   private getGoals() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     this.userSession.synchronize();
     this.goalService.getAllGoals().subscribe(result => {
       this.goals = result;
       this.setMessage();
-    }
-  );
+      loader.dismiss();
+    });
+  }
+
+  getCollectedColor(goal: Goal) {
+    let color = Helper.testColors((goal.collectedAmount / goal.price) * 100);
+    return 'rgb(' + color.r + ',' + color.g + ',' + color.b +')';
   }
 
   setMessage() {
     let message = {};
-    console.log("Spendable amount:", this.getSpendableAmount());
     if (this.getSpendableAmount() < 0) {
       message['text'] = "Oled raha kulutanud";
       message['class'] = "error-message";
@@ -51,10 +60,11 @@ export class HomePage extends ProtectedComponent {
   }
 
   getSpendableAmount() {
-    return this.userSession.getTotalAmount() - this.getTotalCollected();
+    return Number((this.userSession.getTotalAmount() - this.getTotalCollected()).toFixed(2));
   }
+
   getTotalCollected() {
-    return this.goals.reduce((prevVal, elem) => prevVal + elem.collectedAmount, 0);
+    return Number((this.goals.reduce((prevVal, elem) => prevVal + elem.collectedAmount, 0)).toFixed(2));
   }
 
   addNewGoal() {
