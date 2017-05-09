@@ -18,7 +18,6 @@ export class AuthService {
   }
 
   authenticated() {
-    console.log("[AuthService] authenticated()");
     return this.storage.get('token').then(token => {
       return tokenNotExpired(null, token)
     }); // Returns true/false

@@ -17,7 +17,6 @@ import {AuthService} from "../providers/auth-service";
 import {AuthHttp, AuthConfig} from "angular2-jwt";
 import {GoalService} from "../providers/goal-service";
 import {ProtectedComponent} from "../components/protected.component";
-import {ProgressBarComponent} from "../components/progressbar/progress-bar";
 import {PriceLabelDirective} from "../components/price-label";
 import {CardGoalDirective} from "../components/card-goal";
 import {EuroColumnDirective} from "../components/euro-column";
@@ -48,7 +47,6 @@ export function getAuthHttp(http) {
     AddNewGoalComponent,
     GoalDetailsPage,
     LoginComponent,
-    ProgressBarComponent,
     PriceLabelDirective,
     CardGoalDirective,
     EuroColumnDirective

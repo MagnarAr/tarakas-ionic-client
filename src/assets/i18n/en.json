@@ -1,9 +1,64 @@
 {
   "MY_PIGGY_BANK": "My Piggy Bank",
 
+  "TABS": {
+    "MAIN": "Overview",
+    "HELP": "Help",
+    "SETTINGS": "Other"
+  },
+
+  "HOME": {
+    "MY_MONEY": "My money",
+    "MY_GOALS": "My dreams"
+  },
+
   "ADD_NEW_GOAL": {
-    "TITLE": "Name",
-    "PRICE": "Price (€)"
+    "TITLE": "Create new goal",
+    "NAME": "Name",
+    "NAME_ERROR": "Please add name for the goal.",
+    "PRICE": "Price (€)",
+    "PRICE_ERROR": "Please insert number between 0.01 - 1 000 000.",
+    "TAKE_PICTURE": "Take a picture"
+  },
+
+  "GOAL_DETAILS": {
+    "NEEDED": "needed more",
+    "ASK_FOR_HELP": "Ask for help",
+    "ALERT_MESSAGE": "Are you sure you want to remove the goal?",
+    "SUCCESS_MESSAGE": "Goal \"{{name}}\" was deleted successfully!",
+    "PROMPT_ADD": "How much would you like to add?",
+    "PROMPT_REMOVE": "How much would you like to remove?"
+  },
+
+  "HELP": {
+    "TITLE": "Help",
+    "COINS": "Coins",
+    "BILLS": "Bills"
+  },
+
+  "LOGIN": {
+    "TITLE": "Log in or register",
+    "LOG_IN": "Log in",
+    "REGISTER": "Register",
+    "USERNAME": "Username",
+    "PASSWORD": "Password"
+  },
+
+  "SETTINGS": {
+    "TITLE": "Other",
+    "ADD_MONEY": "Add money",
+    "LOG_OUT": "Log out"
+  },
+
+  "COMMON": {
+    "REMOVE": "Remove",
+    "YES": "Yes",
+    "NO": "No",
+    "CANCEL": "Cancel",
+    "ADD": "Add",
+    "SPARE_MONEY": "spare money",
+    "COLLECTED": "collected",
+    "TOTAL": "total"
   }
 
 }

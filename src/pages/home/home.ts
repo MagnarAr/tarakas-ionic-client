@@ -16,7 +16,6 @@ import {Helper} from "../../app/helper.component";
 export class HomePage extends ProtectedComponent {
 
   goals: Goal[] = [];
-  // goalsInRow = 2;
   goalDetailsPage = GoalDetailsPage;
   message: any;
 

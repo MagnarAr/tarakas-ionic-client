@@ -25,7 +25,7 @@ export class MyApp {
   }
 
   private initTranslationSettings() {
-    let fallbackLanguage = 'et';
+    let fallbackLanguage = 'et'; // change to 'en' to test english right now
     let userLang = navigator.language.split('-')[0]; // use navigator lang if available
     userLang = /(et)/gi.test(userLang) ? userLang : fallbackLanguage;
 

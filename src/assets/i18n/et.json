@@ -1,8 +1,63 @@
 {
   "MY_PIGGY_BANK": "Minu rahakassa",
 
+  "TABS": {
+    "MAIN": "Ülevaade",
+    "HELP": "Abi",
+    "SETTINGS": "Seaded"
+  },
+
+  "HOME": {
+    "MY_MONEY": "Minu raha",
+    "MY_GOALS": "Minu unistused"
+  },
+
   "ADD_NEW_GOAL": {
-    "TITLE": "Nimi",
-    "PRICE": "Hind (€)"
+    "TITLE": "Lisa uus unistus",
+    "NAME": "Nimi",
+    "NAME_ERROR": "Palun lisa oma unistusele nimi.",
+    "PRICE": "Hind (€)",
+    "PRICE_ERROR": "Palun sisesta number vahemikus 0.01 - 1 000 000.",
+    "TAKE_PICTURE": "Tee uus pilt"
+  },
+
+  "GOAL_DETAILS": {
+    "NEEDED": "veel vaja",
+    "ASK_FOR_HELP": "Küsi abi",
+    "ALERT_MESSAGE": "Kas oled kindel, et soovid seda unistust kustutada?",
+    "SUCCESS_MESSAGE": "Unistuse \"{{name}}\" kustutamine õnnestus!",
+    "PROMPT_ADD": "Kui palju soovid lisada?",
+    "PROMPT_REMOVE": "Kui palju soovid eemaldada?"
+  },
+
+  "HELP": {
+    "TITLE": "Abi",
+    "COINS": "Sendid",
+    "BILLS": "Paberraha"
+  },
+
+  "LOGIN": {
+    "TITLE": "Logi sisse",
+    "LOG_IN": "Logi sisse",
+    "REGISTER": "Registreeri",
+    "USERNAME": "Kasutaja",
+    "PASSWORD": "Parool"
+  },
+
+  "SETTINGS": {
+    "TITLE": "Seaded",
+    "ADD_MONEY": "Lisa raha",
+    "LOG_OUT": "Logi välja"
+  },
+
+  "COMMON": {
+    "REMOVE": "Eemalda",
+    "YES": "Jah",
+    "NO": "Ei",
+    "CANCEL": "Katkesta",
+    "ADD": "Lisa",
+    "SPARE_MONEY": "vaba raha",
+    "COLLECTED": "kogutud",
+    "TOTAL": "kokku"
   }
 }

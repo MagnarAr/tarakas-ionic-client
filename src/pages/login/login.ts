@@ -18,16 +18,11 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, public authService: AuthService, public navCtrl: NavController,
               private toastCtrl: ToastController, private storage: Storage) {
-    console.log("Login component constructor");
     this.formData = this.formBuilder.group({
       username: ["", Validators.required],
       password: [null, Validators.required]
     });
     this.loading = false;
-  }
-
-  ionViewCanEnter() {
-    console.log("LoginComponent View can enter")
   }
 
   submitForm(): void {
@@ -45,11 +40,9 @@ export class LoginComponent {
     this.authService.authenticateNow(loginData).finally(() => {this.loading = false})
       .subscribe(
         (token) => {
-          console.log("[AuthService] authenticateNow:", token);
           this.registerToken(token)
         },
         (error) => {
-          console.log(error);
           if (error.status == 401) {
             this.errorMessage = "Vale kasutajanimi või parool";
           } else {

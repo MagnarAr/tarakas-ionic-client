@@ -14,6 +14,8 @@ export class TabsPage {
   tab2Root: any = HelpPage;
   tab3Root: any = SettingsPage;
 
+  titleTest: String = "test";
+
   constructor() {
 
   }

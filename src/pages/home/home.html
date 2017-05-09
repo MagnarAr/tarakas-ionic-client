@@ -13,18 +13,18 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12 text-center>
-        <h4>MINU RAHA</h4>
+        <h4>{{"HOME.MY_MONEY" | translate | uppercase}}</h4>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-4 text-center>
-        <price-label [value]="getSpendableAmount()" [label]="'vaba raha'"></price-label>
+        <price-label [value]="getSpendableAmount()" [label]="'COMMON.SPARE_MONEY'"></price-label>
       </ion-col>
       <ion-col col-4 text-center>
-        <price-label [value]="getTotalCollected()" [label]="'kogutud'"></price-label>
+        <price-label [value]="getTotalCollected()" [label]="'COMMON.COLLECTED'"></price-label>
       </ion-col>
       <ion-col col-4 text-center>
-        <price-label [value]="userSession.getTotalAmount()" [label]="'kokku'"></price-label>
+        <price-label [value]="userSession.getTotalAmount()" [label]="'COMMON.TOTAL'"></price-label>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -33,7 +33,7 @@
     <ion-col col-12 *ngIf="message" class="{{message.class}}">{{message.text}}</ion-col>
   </ion-row>
 
-  <h3>Minu unistused</h3>
+  <h3>{{"HOME.MY_GOALS" | translate}}</h3>
 
   <ion-card *ngFor="let goal of goals" tappable [navPush]="goalDetailsPage" [navParams]="{goal: goal, spendableAmount: getSpendableAmount()}">
     <ion-grid [style.background-color]="getCollectedColor(goal)">
@@ -51,8 +51,5 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
-  <!-- maybe use this in the future -->
-  <!--<progress-bar [progress]="12"></progress-bar>-->
 
 </ion-content>

@@ -11,18 +11,16 @@ export class UserSession {
   totalAmount: number;
 
   constructor(private authHttp: AuthHttp, public plt: Platform) {
-    console.log("[UserSession] init.");
     if (!plt.is('ios')) {
       UserSession.CORE_API_URL = 'http://45.76.94.100:8080'
     }
     this.synchronize();
   }
 
+  // maybe call this on each time detail and home view are loaded
   synchronize() {
-    console.log("Start synchornizing");
     this.getBalance().subscribe((result) => {
       this.totalAmount = result.balance;
-      console.log("Result:", result);
     });
   }
 
@@ -34,7 +32,6 @@ export class UserSession {
   }
 
   public addMoney(amount: any) {
-    console.log(amount);
     return this.authHttp.post(UserSession.CORE_API_URL + "/api/balance", amount)
       .map((res) => res.json())
       .catch((error) => Observable.throw(error.json()/*.error*/ || 'Server error'));

@@ -6,6 +6,7 @@ import {Helper} from "../../app/helper.component";
 import {GoalService} from "../../providers/goal-service";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {isNumber} from "util";
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'goal-details',
@@ -21,7 +22,8 @@ export class GoalDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public userSession: UserSession, public goalService: GoalService,
               public alertCtrl: AlertController, public toastCtrl: ToastController,
-              private _SHARE: SocialSharing, public platform: Platform) {
+              private _SHARE: SocialSharing, public platform: Platform,
+              public translateService: TranslateService) {
     this.details = navParams.get("goal");
     this.spendableAmount = navParams.get("spendableAmount");
   }
@@ -36,24 +38,13 @@ export class GoalDetailsPage {
     return 'rgb(' + color.r + ',' + color.g + ',' + color.b +')';
   }
 
-  // ionViewCanLeave(): Promise<boolean> {
-  //   console.log("Modal can leave");
-  //   if (this.saveData) {
-  //     return this.goalService.saveNewGoal(this.details).toPromise()
-  //       .then(() => true)
-  //       .catch(() => true);
-  //   } else {
-  //     return Promise.resolve(true);
-  //   }
-  // }
-
   incrementCollectedAmount() {
     if (this.spendableAmount > 0 && this.getRemainderAmount() > 0) {
       let choices = this.EUROS.filter((bill) => bill <= this.spendableAmount && bill <= this.getRemainderAmount());
       let prompt = this.getCollectionPrompt(choices);
-      prompt.setTitle("Kui palju soovid lisada?");
+      prompt.setTitle(this.translateService.instant("GOAL_DETAILS.PROMPT_ADD"));
       prompt.addButton({
-        text: 'Lisa',
+        text: this.translateService.instant("COMMON.ADD"),
         handler: value => {
           if (value && isNumber(value)) {
             this.details.collectedAmount += value;
@@ -78,9 +69,9 @@ export class GoalDetailsPage {
     if (this.details.collectedAmount <= this.details.price) {
       let choices = this.EUROS.filter((bill) => bill <= Number(this.details.collectedAmount.toFixed(2)));
       let prompt = this.getCollectionPrompt(choices);
-      prompt.setTitle("Kui palju soovid eemaldada?");
+      prompt.setTitle(this.translateService.instant("GOAL_DETAILS.PROMPT_REMOVE"));
       prompt.addButton({
-        text: 'Eemalda',
+        text: this.translateService.instant("COMMON.REMOVE"),
         handler: value => {
           if (value && isNumber(value)) {
             this.details.collectedAmount -= value;
@@ -110,42 +101,22 @@ export class GoalDetailsPage {
     radioValues.forEach((value) => {
       alert.addInput({type: 'radio', label: value, value: value});
     });
-    alert.addButton('Katkesta');
+    alert.addButton(this.translateService.instant("COMMON.CANCEL"),);
     return alert;
   }
-
-  // getPackages() {
-  //   let fullyCollectedPackagesAmount = Math.floor(this.details.collectedAmount / 5);
-  //   let remainder = this.details.collectedAmount % 5;
-  //   let packagesArray = [];
-  //   for (let i = 0; i < fullyCollectedPackagesAmount; i++) {
-  //     packagesArray.push({collected: 5});
-  //   }
-  //   if (remainder) {
-  //     packagesArray.push({collected: remainder});
-  //   }
-  //   let totalPackagesAmount = Math.ceil(this.details.price / 5);
-  //   while (packagesArray.length < totalPackagesAmount) {
-  //     packagesArray.push({collected: 0});
-  //   }
-  //   //this.getPackagesNew();
-  //   return Helper.partitionArray(packagesArray, 10);
-  // }
 
   getTotalPackagesLeft() {
     let allPackages = this.getPackagesNew(this.getRemainderAmount());
     let coinPackages = allPackages.filter((p) => p.value < 5);
     let billPackages = allPackages.filter((p) => p.value >= 5);
-    return {coins: /*Helper.partitionArray(*/coinPackages/*, 10)*/, bills: /*Helper.partitionArray(*/billPackages/*, 5)*/};
-    // return Helper.partitionArray(this.getPackagesNew(this.getRemainderAmount()), 5);
+    return {coins: coinPackages, bills: billPackages};
   }
 
   getCollectedPackages() {
     let allPackages = this.getPackagesNew(this.details.collectedAmount);
     let coinPackages = allPackages.filter((p) => p.value < 5);
     let billPackages = allPackages.filter((p) => p.value >= 5);
-    return {coins: /*Helper.partitionArray(*/coinPackages/*, 10)*/, bills: /*Helper.partitionArray(*/billPackages/*, 5)*/};
-    // return Helper.partitionArray(this.getPackagesNew(this.details.collectedAmount), 5);
+    return {coins: coinPackages, bills: billPackages};
   }
 
   getPackagesNew(totalValue: number) {
@@ -178,20 +149,18 @@ export class GoalDetailsPage {
 
   deleteGoal() {
     let prompt = this.alertCtrl.create({
-      title: 'Kustuta',
-      message: "Kas oled kindel, et soovid seda unistust kustutada?",
+      title: this.translateService.instant("COMMON.REMOVE"),
+      message: this.translateService.instant("GOAL_DETAILS.ALERT_MESSAGE"),
       buttons: [
         {
-          text: 'Ei',
+          text: this.translateService.instant("COMMON.NO"),
           handler: data => {
             prompt.dismiss();
-            console.log('Cancel clicked');
           }
         },
         {
-          text: 'Jah',
+          text: this.translateService.instant("COMMON.YES"),
           handler: data => {
-            console.log('Saved clicked');
             // user has clicked the alert button
             // begin the alert's dismiss transition
             let navTransition = prompt.dismiss();
@@ -204,7 +173,7 @@ export class GoalDetailsPage {
                 this.saveData = false;
                 this.navCtrl.pop();
                 this.toastCtrl.create({
-                  message: 'Unistuse \'' + this.details.name + '\' kustutamine õnnestus!',
+                  message: this.translateService.instant("GOAL_DETAILS.SUCCESS_MESSAGE", {name: this.details.name}),
                   duration: 3000,
                   position: 'top'
                 }).present();

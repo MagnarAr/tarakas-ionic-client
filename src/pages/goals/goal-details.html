@@ -14,7 +14,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6 text-left>
-        <h4>VABA RAHA</h4>
+        <h4>{{"COMMON.SPARE_MONEY" | translate | uppercase}}</h4>
       </ion-col>
       <ion-col col-6 text-right>
         <h4>{{spendableAmount | currency:'EUR':true}}</h4>
@@ -41,7 +41,7 @@
       </ion-row>
       <ion-row>
         <ion-col class="detail-view-label">
-          kogutud
+          {{"COMMON.COLLECTED" | translate}}
         </ion-col>
         <ion-col text-right>
           <button ion-button small icon-only (click)="decrementCollectedAmount()" [disabled]="!details.collectedAmount">
@@ -76,7 +76,7 @@
       </ion-row>
       <ion-row>
         <ion-col class="detail-view-label">
-          veel vaja
+          {{"GOAL_DETAILS.NEEDED" | translate}}
         </ion-col>
         <ion-col text-right>
           <button class="button"
@@ -84,7 +84,7 @@
                   padding-vertical
                   color="primary"
                   (click)="askMoney()">
-            Küsi abi
+            {{"GOAL_DETAILS.ASK_FOR_HELP" | translate}}
           </button>
         </ion-col>
       </ion-row>

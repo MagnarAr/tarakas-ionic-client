@@ -17,14 +17,12 @@ export class GoalService {
   }
 
   getAllGoals() {
-    console.log("[GoalService] getAllGoals()");
     return this.authHttp.get(GoalService.CORE_API_URL + "/api/goals")
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   saveNewGoal(goal: Goal) {
-    console.log("Saving goal");
     return this.authHttp.post(GoalService.CORE_API_URL + "/api/goals", goal).map(this.extractData).catch(this.handleError);
   }
 
@@ -33,7 +31,6 @@ export class GoalService {
   }
 
   private extractData(res: Response) {
-    console.log("Response", res);
     let body = res.json();
     return body || [];
   }
