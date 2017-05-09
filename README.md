@@ -21,4 +21,5 @@ To test the application on iOS, check "Build/installation notes" below.
   * Then open the project in Xcode, using project file generated: ```/platforms/ios/Tarakas.xcodeproj```
   
 * For framework specific instructions, please refer to official [Ionic 2 documentation](http://ionicframework.com/docs/intro/installation/)
+* To install Android Studio, click [here](https://developer.android.com/studio/index.html).
 * If You are having problems running test application on Your Apple device, please refer to [Apple documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html)
