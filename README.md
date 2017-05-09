@@ -3,6 +3,10 @@
 ## Introduction
 This is a Ionic 2 cross-platform piggy bank application for children.
 
+Currently, the application can only be tested on Android by downloading the apk from build directory: ```/build/android-debug.apk```
+
+To test the application on iOS, check "Build/installation notes" below.
+
 ## Build/installation notes
 
 * Make sure you have NodeJS installed and *npm* in system path.
