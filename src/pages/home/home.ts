@@ -8,6 +8,7 @@ import {AuthService} from "../../providers/auth-service";
 import {GoalService} from "../../providers/goal-service";
 import {ProtectedComponent} from "../../components/protected.component";
 import {Helper} from "../../app/helper.component";
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'page-home',
@@ -20,7 +21,8 @@ export class HomePage extends ProtectedComponent {
   message: any;
 
   constructor(public modalCtrl: ModalController, public userSession: UserSession, public loadingCtrl: LoadingController,
-              public goalService: GoalService, public authService: AuthService, public _app: App) {
+              public goalService: GoalService, public authService: AuthService, public _app: App,
+              public translateService: TranslateService) {
     super(authService, _app);
   }
 
@@ -30,7 +32,7 @@ export class HomePage extends ProtectedComponent {
 
   private getGoals() {
     let loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      content: this.translateService.instant("COMMON.PLEASE_WAIT"),
     });
     loader.present();
     this.userSession.synchronize();
@@ -49,10 +51,10 @@ export class HomePage extends ProtectedComponent {
   setMessage() {
     let message = {};
     if (this.getSpendableAmount() < 0) {
-      message['text'] = "Oled raha kulutanud";
+      message['text'] = this.translateService.instant("HOME.NEGATIVE_BALANCE");
       message['class'] = "error-message";
     } else if (this.getSpendableAmount() > 0) {
-      message['text'] = "Sul on vaba raha!";
+      message['text'] = this.translateService.instant("HOME.POSITIVE_BALANCE");
       message['class'] = "success-message";
     }
     this.message = message;

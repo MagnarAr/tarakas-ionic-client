@@ -4,6 +4,7 @@ import {AuthService} from "../../providers/auth-service";
 import {Component} from "@angular/core";
 import {Storage} from "@ionic/storage";
 import {TabsPage} from "../tabs/tabs";
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'login',
@@ -17,7 +18,7 @@ export class LoginComponent {
   loading: boolean;
 
   constructor(private formBuilder: FormBuilder, public authService: AuthService, public navCtrl: NavController,
-              private toastCtrl: ToastController, private storage: Storage) {
+              private toastCtrl: ToastController, private storage: Storage, public translateService: TranslateService) {
     this.formData = this.formBuilder.group({
       username: ["", Validators.required],
       password: [null, Validators.required]
@@ -44,9 +45,9 @@ export class LoginComponent {
         },
         (error) => {
           if (error.status == 401) {
-            this.errorMessage = "Vale kasutajanimi või parool";
+            this.errorMessage = this.translateService.instant("LOGIN.WRONG_USER_OR_PW");
           } else {
-            this.errorMessage = "Tehniline viga";
+            this.errorMessage = this.translateService.instant("COMMON.TECHNICAL_ERROR");
           }
         }
       );
@@ -56,8 +57,8 @@ export class LoginComponent {
     this.storage.set('token', token).then(result => {
       this.navCtrl.setRoot(TabsPage);
       this.toastCtrl.create({
-        message: 'Sisselogimine õnnestus!',
-        duration: 3000,
+        message: this.translateService.instant("LOGIN.SUCCESS_MESSAGE"),
+        duration: 1000,
         position: 'bottom'
       }).present();
     });

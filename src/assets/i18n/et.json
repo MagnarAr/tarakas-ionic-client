@@ -9,7 +9,9 @@
 
   "HOME": {
     "MY_MONEY": "Minu raha",
-    "MY_GOALS": "Minu unistused"
+    "MY_GOALS": "Minu unistused",
+    "NEGATIVE_BALANCE": "Oled raha kulutanud!",
+    "POSITIVE_BALANCE": "Sul on vaba raha!"
   },
 
   "ADD_NEW_GOAL": {
@@ -27,7 +29,12 @@
     "ALERT_MESSAGE": "Kas oled kindel, et soovid seda unistust kustutada?",
     "SUCCESS_MESSAGE": "Unistuse \"{{name}}\" kustutamine õnnestus!",
     "PROMPT_ADD": "Kui palju soovid lisada?",
-    "PROMPT_REMOVE": "Kui palju soovid eemaldada?"
+    "PROMPT_REMOVE": "Kui palju soovid eemaldada?",
+    "HELP_TITLE": "Vali põhjus, miks abi vajad?",
+    "BDAY_SUBJECT": "Sünnipäevakutse",
+    "BDAY_MESSAGE": "Tere!\n\nOled oodatud minu sünnipäevale järgmisel reedel, kell 15:00. \n\nSamuti kogun raha oma unistuse '{{goal}}' jaoks.\n\nMinu konto number on: EE00001234221122112\n\nJään teid ootama!",
+    "CWDF_SUBJECT": "Vajan abi projektiga",
+    "CWDF_MESSAGE": "Tere!\n\nKogun raha praegu oma suure eesmärgi '{{goal}}' jaoks.\n\nOleksin väga tänulik, kui saaksite mind aidata!\n\nMinu konto number on: EE00001234221122112\n\nEtte tänades!"
   },
 
   "HELP": {
@@ -41,13 +48,16 @@
     "LOG_IN": "Logi sisse",
     "REGISTER": "Registreeri",
     "USERNAME": "Kasutaja",
-    "PASSWORD": "Parool"
+    "PASSWORD": "Parool",
+    "WRONG_USER_OR_PW": "Vale kasutajanimi või parool",
+    "SUCCESS_MESSAGE": "Sisselogimine õnnestus!"
   },
 
   "SETTINGS": {
     "TITLE": "Seaded",
     "ADD_MONEY": "Lisa raha",
-    "LOG_OUT": "Logi välja"
+    "LOG_OUT": "Logi välja",
+    "INSERT_AMOUNT_TO_ADD": "Sisesta summa, kui palju soovid juurde lisada"
   },
 
   "COMMON": {
@@ -58,6 +68,9 @@
     "ADD": "Lisa",
     "SPARE_MONEY": "vaba raha",
     "COLLECTED": "kogutud",
-    "TOTAL": "kokku"
+    "TOTAL": "kokku",
+    "SEND_EMAIL": "Saada e-mail",
+    "PLEASE_WAIT": "Palun oota ...",
+    "TECHNICAL_ERROR": "Tehniline viga"
   }
 }

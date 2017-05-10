@@ -190,19 +190,56 @@ export class GoalDetailsPage {
   askMoney() {
     this.platform.ready()
       .then(() => {
-        this._SHARE.canShareViaEmail()
-          .then(() => {
-            this._SHARE.shareViaEmail("message", "subject", [])
-              .then((data) => {
-                console.log('Shared via Email');
-              })
-              .catch((err) => {
-                console.log('Not able to be shared via Email');
-              });
+        let prompt = this.alertCtrl.create({
+          title: this.translateService.instant("GOAL_DETAILS.HELP_TITLE"),
+          buttons: [
+            {
+              text: this.translateService.instant("COMMON.CANCEL"),
+              handler: data => {
+                prompt.dismiss();
+              }
+            },
+            {
+              text: this.translateService.instant("COMMON.SEND_EMAIL"),
+              handler: data => {
+                if (data) {
+                  if (data == 'BDAY') {
+                    this.sendEmail(
+                      this.translateService.instant("GOAL_DETAILS.BDAY_SUBJECT"),
+                      this.translateService.instant("GOAL_DETAILS.BDAY_MESSAGE", {goal: this.details.name})
+                    );
+                  } else {
+                    this.sendEmail(
+                      this.translateService.instant("GOAL_DETAILS.CWDF_SUBJECT"),
+                      this.translateService.instant("GOAL_DETAILS.CWDF_MESSAGE", {goal: this.details.name})
+                    );
+                  }
+                }
+              }
+            }
+          ]
+        });
+
+        prompt.addInput({type: 'radio', label: "Sünnipäev", value: "BDAY"});
+        prompt.addInput({type: 'radio', label: "Projekt", value: "CWDF"});
+
+        prompt.present();
+      });
+  }
+
+  private sendEmail(subject: string, message: string) {
+    this._SHARE.canShareViaEmail()
+      .then(() => {
+        this._SHARE.shareViaEmail(message, subject, [])
+          .then((data) => {
+            console.log('Shared via Email');
           })
           .catch((err) => {
-            console.log('Sharing via Email NOT enabled');
+            console.log('Not able to be shared via Email');
           });
+      })
+      .catch((err) => {
+        console.log('Sharing via Email NOT enabled');
       });
   }
 
