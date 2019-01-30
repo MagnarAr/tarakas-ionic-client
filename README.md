@@ -12,7 +12,7 @@ To test the application on iOS, check "Build/installation notes" below.
 * Make sure you have NodeJS installed and *npm* in system path.
 * Run: ```npm install -g ionic cordova```
 * Clone repository
-* Get all dependencies (Gradle)
+* Run: ```npm install``` (get all dependenciess)
 * To run in local browser (default will be used), run: ```ionic serve```
 * To build APK for Android, run: ```ionic build android``` (APK will be created, make sure You have Android Studio installed with latest sdk-tools before doing this, also ```android``` and ```ant``` must be reachable as system path variables)
   * If build is successful, an APK file will be generated to: ```/platforms/android/build/outputs/apk/android-debug.apk```
