@@ -17,9 +17,9 @@ export class LoginComponent {
   errorMessage = "";
   loading: boolean;
 
-  constructor(private formBuilder: FormBuilder, public authService: AuthService, public navCtrl: NavController,
+  constructor(formBuilder: FormBuilder, public authService: AuthService, public navCtrl: NavController,
               private toastCtrl: ToastController, private storage: Storage, public translateService: TranslateService) {
-    this.formData = this.formBuilder.group({
+    this.formData = formBuilder.group({
       username: ["", Validators.required],
       password: [null, Validators.required]
     });
@@ -30,7 +30,7 @@ export class LoginComponent {
     if (this.authType == 'login') {
       this.login(this.formData.value);
     } else { // log in after registration
-      this.authService.registerAccount(this.formData.value).subscribe((data) => {
+      this.authService.registerAccount(this.formData.value).subscribe(() => {
         this.login(this.formData.value);
       })
     }
@@ -54,7 +54,7 @@ export class LoginComponent {
   }
 
   private registerToken(token) {
-    this.storage.set('token', token).then(result => {
+    this.storage.set('token', token).then(() => {
       this.navCtrl.setRoot(TabsPage);
       this.toastCtrl.create({
         message: this.translateService.instant("LOGIN.SUCCESS_MESSAGE"),

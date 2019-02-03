@@ -1,19 +1,16 @@
 import {Injectable} from '@angular/core';
 import {AuthHttp} from "angular2-jwt";
 import {Observable} from "rxjs";
-import {Platform} from "ionic-angular";
+import {environment} from "../environments/environment";
 
 @Injectable()
 export class UserSession {
 
-  private static CORE_API_URL = "http://45.76.94.100:8080";
+  private static CORE_API_URL = environment.apiBaseUrl;
 
   totalAmount: number;
 
-  constructor(private authHttp: AuthHttp, public plt: Platform) {
-    if (!plt.is('ios')) {
-      UserSession.CORE_API_URL = 'http://45.76.94.100:8080'
-    }
+  constructor(private authHttp: AuthHttp) {
     this.synchronize();
   }
 

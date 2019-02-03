@@ -3,17 +3,14 @@ import {AuthHttp} from "angular2-jwt";
 import {Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {Goal} from "../pages/goals/goal";
-import {Platform} from "ionic-angular";
+import {environment} from "../environments/environment";
 
 @Injectable()
 export class GoalService {
 
-  private static CORE_API_URL = "http://45.76.94.100:8080";
+  private static CORE_API_URL = environment.apiBaseUrl;
 
-  constructor(private authHttp: AuthHttp, private plt: Platform) {
-    if (!plt.is('ios')) {
-      GoalService.CORE_API_URL = 'http://45.76.94.100:8080'
-    }
+  constructor(private authHttp: AuthHttp) {
   }
 
   getAllGoals() {
