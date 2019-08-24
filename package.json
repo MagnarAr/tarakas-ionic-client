@@ -25,11 +25,12 @@
     "@ionic-native/splash-screen": "3.4.2",
     "@ionic-native/status-bar": "3.4.2",
     "@ionic/storage": "2.0.1",
+    "@ngx-translate/core": "^7.2.2",
+    "@ngx-translate/http-loader": "^0.1.0",
     "angular2-jwt": "^0.2.2",
     "ionic-angular": "3.0.1",
     "ionic-app-lib": "^2.2.0",
     "ionicons": "3.0.0",
-    "ng2-translate": "5.0.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.4.0",
     "zone.js": "^0.8.4"

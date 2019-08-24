@@ -3,7 +3,7 @@ import {AlertController, App} from 'ionic-angular';
 import {UserSession} from "../../providers/user-session";
 import {LoginComponent} from "../login/login";
 import {Storage} from '@ionic/storage';
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'page-settings',

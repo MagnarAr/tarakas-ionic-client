@@ -4,7 +4,7 @@ import {AuthService} from "../../providers/auth-service";
 import {Component} from "@angular/core";
 import {Storage} from "@ionic/storage";
 import {TabsPage} from "../tabs/tabs";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'login',

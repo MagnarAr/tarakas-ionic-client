@@ -8,7 +8,7 @@ import {AuthService} from "../../providers/auth-service";
 import {GoalService} from "../../providers/goal-service";
 import {ProtectedComponent} from "../../components/protected.component";
 import {Helper} from "../../app/helper.component";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'page-home',
@@ -26,7 +26,7 @@ export class HomePage extends ProtectedComponent {
     super(authService, _app);
   }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.getGoals();
   }
 

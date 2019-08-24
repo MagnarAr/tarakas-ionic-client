@@ -4,7 +4,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 
 import {TabsPage} from '../pages/tabs/tabs';
-import {TranslateService} from 'ng2-translate'
+import {TranslateService} from '@ngx-translate/core'
 
 
 @Component({

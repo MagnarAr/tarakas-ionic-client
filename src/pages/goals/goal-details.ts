@@ -6,7 +6,8 @@ import {Helper} from "../../app/helper.component";
 import {GoalService} from "../../providers/goal-service";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {isNumber} from "util";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
+import {EuroColumn} from "../../components/euro-column.model";
 
 @Component({
   selector: 'goal-details',
@@ -119,7 +120,7 @@ export class GoalDetailsPage {
     return {coins: coinPackages, bills: billPackages};
   }
 
-  getPackagesNew(totalValue: number) {
+  getPackagesNew(totalValue: number): EuroColumn[] {
     let packagesArray = [];
 
     let remainder = Helper.round(totalValue, 2);
@@ -136,12 +137,12 @@ export class GoalDetailsPage {
       remainder = Helper.round(remainder - _closestRemainder, 2);
     }
 
-    let finalArray = [];
+    let finalArray: EuroColumn[] = [];
 
     this.EUROS.forEach((bill) => {
       let billCount = packagesArray.filter((value) => value === bill).length;
       if (billCount > 0) {
-        finalArray.push({value: bill, count: billCount, image: Helper.getEuroBillImagePath(bill)})
+        finalArray.push({value: bill, count: billCount})
       }
     });
     return finalArray;
