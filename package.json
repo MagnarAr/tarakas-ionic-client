@@ -36,6 +36,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
+    "@angular/cli": "^9.0.0-next.0",
     "@ionic/app-scripts": "3.2.2",
     "typescript": "2.4.0"
   },
