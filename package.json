@@ -10,14 +10,14 @@
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
-    "@angular/common": "4.0.0",
-    "@angular/compiler": "4.0.0",
-    "@angular/compiler-cli": "4.0.0",
-    "@angular/core": "4.0.0",
-    "@angular/forms": "4.0.0",
-    "@angular/platform-browser": "4.0.0",
-    "@angular/platform-browser-dynamic": "4.0.0",
-    "@angular/platform-server": "4.0.0",
+    "@angular/common": "9.0.0-next.3",
+    "@angular/compiler": "9.0.0-next.3",
+    "@angular/compiler-cli": "9.0.0-next.3",
+    "@angular/core": "9.0.0-next.3",
+    "@angular/forms": "9.0.0-next.3",
+    "@angular/platform-browser": "9.0.0-next.3",
+    "@angular/platform-browser-dynamic": "9.0.0-next.3",
+    "@angular/platform-server": "9.0.0-next.3",
     "@ionic-native/camera": "3.4.2",
     "@ionic-native/core": "3.4.2",
     "@ionic-native/social-sharing": "3.4.2",
@@ -30,17 +30,18 @@
     "ionic-angular": "3.0.1",
     "ionic-app-lib": "^2.2.0",
     "ionicons": "3.0.0",
-    "rxjs": "5.1.1",
+    "rxjs": "6.5.2",
     "sw-toolbox": "3.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.1"
+    "zone.js": "~0.10.1",
+    "rxjs-compat": "^6.0.0-rc.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.0-next.0",
     "@angular/cli": "^9.0.0-next.0",
     "@ionic/app-scripts": "3.2.2",
     "codelyzer": "^5.0.1",
-    "typescript": "2.4.0"
+    "typescript": "3.5.3"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
