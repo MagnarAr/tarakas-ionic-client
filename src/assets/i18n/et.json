@@ -61,6 +61,7 @@
   },
 
   "COMMON": {
+    "BACK": "Tagasi",
     "REMOVE": "Eemalda",
     "YES": "Jah",
     "NO": "Ei",

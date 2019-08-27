@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{"SETTINGS.TITLE" | translate}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item tappable (click)="insertMoney()">
+      {{"SETTINGS.ADD_MONEY" | translate | uppercase}}
+      <ion-icon name="add" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item tappable (click)="logOut()">
+      {{"SETTINGS.LOG_OUT" | translate | uppercase}}
+      <ion-icon name="exit" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

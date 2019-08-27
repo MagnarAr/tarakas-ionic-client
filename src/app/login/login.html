@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>
+      {{"LOGIN.TITLE" | translate}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center style="height: 100%; justify-content: center;">
+  <div padding>
+    <ion-segment (ionChange)="segmentChanged($event)" value="login">
+      <ion-segment-button value="login">
+        {{"LOGIN.LOG_IN" | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="signup">
+        {{"LOGIN.REGISTER" | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <form [formGroup]="formData" (ngSubmit)="submitForm()">
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">{{"LOGIN.USERNAME" | translate}}</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">{{"LOGIN.PASSWORD" | translate}}</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="errorMessage">
+        <p class="invalid">{{errorMessage}}</p>
+      </ion-item>
+    </ion-list>
+
+
+    <!-- save form data -->
+    <div padding>
+      <ion-button expand="block" color="primary" button-type="button" type="submit" [disabled]="!formData.valid || loading">
+        {{authType == 'login' ? ("LOGIN.LOG_IN" | translate) : ("LOGIN.REGISTER" | translate)}}
+      </ion-button>
+    </div>
+  </form>
+
+</ion-content>

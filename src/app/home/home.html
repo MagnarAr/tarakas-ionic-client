@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'MY_PIGGY_BANK' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addNewGoal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" text-center>
+        <h4>{{"HOME.MY_MONEY" | translate | uppercase}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4" text-center>
+        <price-label [value]="getSpendableAmount()" [label]="'COMMON.SPARE_MONEY'"></price-label>
+      </ion-col>
+      <ion-col size="4" text-center>
+        <price-label [value]="getTotalCollected()" [label]="'COMMON.COLLECTED'"></price-label>
+      </ion-col>
+      <ion-col size="4" text-center>
+        <price-label [value]="userSession.getTotalAmount()" [label]="'COMMON.TOTAL'"></price-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row text-center>
+    <ion-col size="12" *ngIf="message" class="{{message.class}}">{{message.text}}</ion-col>
+  </ion-row>
+
+  <h3>{{"HOME.MY_GOALS" | translate}}</h3>
+
+  <ion-card *ngFor="let goal of goals"
+            tappable
+            (click)="modifyGoal(goal)">
+    <ion-grid [style.background-color]="getCollectedColor(goal)">
+      <ion-row no-padding align-items-center>
+        <ion-col size="8">
+          <ion-card-content>
+            <ion-card-title>{{goal.name}}</ion-card-title>
+            <p><ion-icon [name]="'pricetag'"></ion-icon>
+              {{goal.collectedAmount | currency:'EUR'}} / {{goal.price | currency:'EUR'}}</p>
+          </ion-card-content>
+        </ion-col>
+        <ion-col *ngIf="goal.imageSource" no-padding>
+          <img src="{{goal.imageSource ? 'data:image/jpeg;base64,' + goal.imageSource : '/assets/images/no-image-icon.png'}}"/>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>

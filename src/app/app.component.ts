@@ -1,24 +1,23 @@
-import {Component} from '@angular/core';
-import {Platform} from 'ionic-angular';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {StatusBar} from '@ionic-native/status-bar';
-
-import {TabsPage} from '../pages/tabs/tabs';
-import {TranslateService} from '@ngx-translate/core'
+import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { TranslateService } from '@ngx-translate/core'
 
 
 @Component({
+  selector: 'tarakas-app',
   templateUrl: 'app.html'
 })
-export class MyApp {
-  rootPage = TabsPage;
+export class TarakasApplication {
 
-  constructor(platform: Platform, private translate: TranslateService, private splashScreen: SplashScreen, private statusBar: StatusBar) {
+  constructor(private platform: Platform,
+              private translate: TranslateService,
+              private splashScreen: SplashScreen,
+              private statusBar: StatusBar) {
     this.initTranslationSettings();
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+    this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{details?.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-text color="primary">
+          <span>{{"COMMON.BACK" | translate}}</span>
+        </ion-text>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteGoal()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="details">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" text-left>
+        <h4>{{"COMMON.SPARE_MONEY" | translate | uppercase}}</h4>
+      </ion-col>
+      <ion-col size="6" text-right>
+        <h4>{{spendableAmount | currency:'EUR'}}</h4>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card [style.background-color]="collectedAmountColor">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" text-right class="detail-view-price">
+          {{details.collectedAmount | currency:'EUR'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3" *ngFor="let col of collectedPackages.bills">
+          <euro-column [data]="col"></euro-column>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2" *ngFor="let col of collectedPackages.coins">
+          <euro-column [data]="col"></euro-column>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="detail-view-label">
+          {{"COMMON.COLLECTED" | translate}}
+        </ion-col>
+        <ion-col text-right>
+          <ion-button size="small" (click)="decrementCollectedAmount()" [disabled]="!details.collectedAmount">
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+          </ion-button>
+
+          <ion-button size="small" (click)="incrementCollectedAmount()"
+                  [disabled]="details.collectedAmount >= details.price || spendableAmount <= 0">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card [style.background-color]="spendableAmountColor">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" text-right class="detail-view-price">
+          {{details.price - details.collectedAmount | currency:'EUR'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3" *ngFor="let col of packagesLeft.bills">
+          <euro-column [data]="col"></euro-column>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2" *ngFor="let col of packagesLeft.coins">
+          <euro-column [data]="col"></euro-column>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="detail-view-label">
+          {{"GOAL_DETAILS.NEEDED" | translate}}
+        </ion-col>
+        <ion-col text-right>
+          <ion-button class="button"
+                  padding-vertical
+                  color="primary"
+                  (click)="askMoney()">
+            {{"GOAL_DETAILS.ASK_FOR_HELP" | translate}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>

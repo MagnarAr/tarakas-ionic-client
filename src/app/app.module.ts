@@ -1,99 +1,77 @@
-import {NgModule, ErrorHandler, LOCALE_ID} from '@angular/core';
+import {NgModule, LOCALE_ID} from '@angular/core';
 import {IonicStorageModule, Storage} from '@ionic/storage';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
-import {MyApp} from './app.component';
-import {SettingsPage} from '../pages/settings/settings';
-import {HelpPage} from '../pages/help/help';
-import {HomePage} from '../pages/home/home';
-import {TabsPage} from '../pages/tabs/tabs';
-import {AddNewGoalComponent} from "../pages/goals/add-new-goal.component";
-import {Http, HttpModule} from "@angular/http";
+import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+import {TarakasApplication} from './app.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {GoalDetailsPage} from "../pages/goals/goal-details";
-import {UserSession} from "../providers/user-session";
-import {LoginComponent} from "../pages/login/login";
-import {AuthService} from "../providers/auth-service";
-import {AuthHttp, AuthConfig} from "angular2-jwt";
-import {GoalService} from "../providers/goal-service";
-import {ProtectedComponent} from "../components/protected.component";
-import {PriceLabelDirective} from "../components/price-label";
-import {CardGoalDirective} from "../components/card-goal";
-import {EuroColumnDirective} from "../components/euro-column.component";
-import {SplashScreen} from "@ionic-native/splash-screen";
-import {StatusBar} from "@ionic-native/status-bar";
-import {Camera} from "@ionic-native/camera";
-import {SocialSharing} from "@ionic-native/social-sharing";
+import {LoginComponent} from "./login/login";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Camera} from "@ionic-native/camera/ngx";
+import {SplashScreen} from "@ionic-native/splash-screen/ngx";
+import {StatusBar} from "@ionic-native/status-bar/ngx";
+import {SocialSharing} from "@ionic-native/social-sharing/ngx";
+import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
+import {RouteReuseStrategy} from "@angular/router";
+import {AppRoutingModule} from "./app-routing.module";
+import {ReactiveFormsModule} from "@angular/forms";
+import {registerLocaleData} from "@angular/common";
+import localeET from '@angular/common/locales/et';
 
-let storage = new Storage({});
-
-export function getAuthHttp(http) {
-  return new AuthHttp(new AuthConfig({
-    headerPrefix: "Bearer",
-    headerName: "X-Authorization",
-    globalHeaders: [{'Accept': 'application/json'}],
-    tokenGetter: (() => storage.get('token')),
-  }), http);
+export function jwtOptionsFactory(storage) {
+  return {
+    tokenGetter: () => {
+      return storage.get('token');
+    },
+    headerName: 'X-Authorization',
+    whitelistedDomains: ['localhost:9000']
+  }
 }
 
-export function HttpLoaderFactory(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
+registerLocaleData(localeET);
+
 @NgModule({
   declarations: [
-    MyApp,
-    ProtectedComponent,
-    SettingsPage,
-    HelpPage,
-    HomePage,
-    TabsPage,
-    AddNewGoalComponent,
-    GoalDetailsPage,
-    LoginComponent,
-    PriceLabelDirective,
-    CardGoalDirective,
-    EuroColumnDirective
+    TarakasApplication,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    ReactiveFormsModule,
+    IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
+    AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
+      }
+    }),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [Storage]
       }
     })
   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    ProtectedComponent,
-    SettingsPage,
-    HelpPage,
-    HomePage,
-    TabsPage,
-    AddNewGoalComponent,
-    GoalDetailsPage,
-    LoginComponent
-  ],
+  entryComponents: [],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: AuthHttp, useFactory: getAuthHttp, deps: [Http]},
-    {provide: LOCALE_ID, useValue: 'et-EE'},
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LOCALE_ID, useValue: 'et-EE' },
     SplashScreen,
     StatusBar,
     SocialSharing,
     Camera,
-    TranslateService,
-    UserSession,
-    AuthService,
-    GoalService
-  ]
+    TranslateService
+  ],
+  bootstrap: [TarakasApplication]
 })
 export class AppModule {
 }
